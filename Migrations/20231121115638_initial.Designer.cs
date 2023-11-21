@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EHRMsystem.Migrations
 {
     [DbContext(typeof(EHRMContext))]
-    [Migration("20231121103046_initial")]
+    [Migration("20231121115638_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -48,6 +48,49 @@ namespace EHRMsystem.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Food"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Drink"
+                        });
+                });
+
+            modelBuilder.Entity("EHRMsystem.Model.DepartmentPerson", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DepartmentPersons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DepartmentId = 3,
+                            PersonId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DepartmentId = 4,
+                            PersonId = 2
+                        });
                 });
 
             modelBuilder.Entity("EHRMsystem.Model.Person", b =>
@@ -62,6 +105,18 @@ namespace EHRMsystem.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Persons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Name = "Basic Cheese Pizza"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Cola"
+                        });
                 });
 
             modelBuilder.Entity("DepartmentPerson", b =>
