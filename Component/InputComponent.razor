@@ -1,0 +1,21 @@
+
+<h1>InputForm</h1>
+
+<label>@currentcount</label>
+<button @onclick="increase">Plus</button>
+<button @onclick="reseat">Reseat</button>
+<input @bind-value="step" width="100px" />
+@code{
+    int currentcount =0;
+    [Parameter]
+    public int step {get;set;} = 1 ;
+
+    public void increase(){
+        currentcount+=step;
+    }
+
+    void reseat(){
+        currentcount=0;
+    }
+
+}
